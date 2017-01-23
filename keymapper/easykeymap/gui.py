@@ -1070,8 +1070,7 @@ class GUI(object):
 
     def build(self, sub=False):
         if self.filename == None:
-            self.buildAs(sub)
-            return
+            return self.buildAs(sub)
 
         if self.selectedconfig:
             config = configurations[self.selectedconfig]
@@ -1086,7 +1085,7 @@ class GUI(object):
                 if not answer:
                     return
             filename = os.path.splitext(self.filename)[0] + '.hex'
-            self.buildReal(filename, config, sub)
+            return self.buildReal(filename, config, sub)
 
     def buildAs(self, sub=False):
         if self.selectedconfig:
@@ -1110,7 +1109,7 @@ class GUI(object):
                 parent=self.root)
             if not filename:
                 return
-            self.buildReal(filename, config, sub)
+            return self.buildReal(filename, config, sub)
         else:
             messagebox.showerror(title="Can't build binary",
                                  message='Create a keyboard first!',
